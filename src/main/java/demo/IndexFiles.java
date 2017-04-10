@@ -91,7 +91,7 @@ class IndexFiles {
             System.out.println("Indexing to directory '" + indexPath + "'...");
 
             Directory dir = FSDirectory.open(Paths.get(indexPath));
-            // TODO: change standard analyzer to custom one
+            // change standard analyzer to custom one
             // Analyzer analyzer = new StandardAnalyzer();
             Analyzer analyzer = new DemoAnalyzer("index");
             IndexWriterConfig iwc = new IndexWriterConfig(analyzer);

@@ -90,9 +90,9 @@ class SearchFiles {
 
         IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index)));
         IndexSearcher searcher = new IndexSearcher(reader);
-        // TODO: change standard analyzer to custom one
+        // change standard analyzer to custom one
         // Analyzer analyzer = new StandardAnalyzer();
-        Analyzer analyzer = new DemoAnalyzer("search");
+        Analyzer analyzer = new DemoAnalyzer("index");
         BufferedReader in = null;
         if (queries != null) {
             in = Files.newBufferedReader(Paths.get(queries), StandardCharsets.UTF_8);
