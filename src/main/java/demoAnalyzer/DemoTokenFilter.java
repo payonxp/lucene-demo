@@ -30,7 +30,7 @@ public class DemoTokenFilter extends TokenFilter{
      *
      * @param input
      */
-    protected DemoTokenFilter(String mode, TokenStream input) {
+    DemoTokenFilter(String mode, TokenStream input) {
         super(input);
         this.mode = mode;
     }

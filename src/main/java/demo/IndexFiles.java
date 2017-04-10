@@ -30,6 +30,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Date;
 
+import demoAnalyzer.DemoAnalyzer;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.LongPoint;
@@ -91,7 +92,8 @@ class IndexFiles {
 
             Directory dir = FSDirectory.open(Paths.get(indexPath));
             // TODO: change standard analyzer to custom one
-            Analyzer analyzer = new StandardAnalyzer();
+            // Analyzer analyzer = new StandardAnalyzer();
+            Analyzer analyzer = new DemoAnalyzer("index");
             IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
 
             if (create) {
