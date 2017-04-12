@@ -1,12 +1,17 @@
 # lucene-demo
-## 环境
+## Env
 * Maven
 * JDK 1.8
+* If you meet jdk version problem in Intellij Idea, 
+* try to change jdk version in setting and project structure.
 
-## 依赖
+## Dependencies
 * lucene 6.4.2
-* jieba 分词
+* [jieba](https://github.com/huaban/jieba-analysis) 
 * spring boot
 
-## 运行
+## Run
 `mvn spring-boot:run`
+
+## RestApi
+* We provide a sample html
