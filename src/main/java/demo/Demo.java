@@ -1,12 +1,15 @@
 package demo;
 
 import com.huaban.analysis.jieba.JiebaSegmenter;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class Demo {
+
+    @Test
     public static void main(String[] args) throws Exception {
-        //index("C:\\Users\\tpeng\\Downloads\\douban_TV");
+        index("C:\\Users\\tpeng\\Downloads\\douban_TV");
         search("古装片和动作片");
     }
 
