@@ -7,14 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
 public class DemoController {
-    @RequestMapping(value = "/")
-    @ResponseBody
-    public String hello() {
-        return "index.html";
-    }
-
 
     @RequestMapping(value = "/index", method = RequestMethod.POST)
     @ResponseBody
