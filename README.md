@@ -1,6 +1,7 @@
 # lucene-demo
 A RestFul application for file indexing and searching  
-IR lesson project 1
+IR lesson project 1  
+Support Chinese  
 
 ## Environment
 * Maven
@@ -14,7 +15,9 @@ try to change jdk version in setting and project structure.
 * spring boot
 
 ## Run
-`mvn spring-boot:run`
+`mvn spring-boot:run` 
+ 
+open in your browser  
 `localhost:8888/demo/index.html`
 ## RestApi
 1. index
@@ -34,3 +37,6 @@ content-type: JSON
 body: { keyword: string }
 return: { result: [string] }
 ```
+## Todo List
+* index may perform a very slow response
+* update index api
