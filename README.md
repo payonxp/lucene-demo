@@ -15,7 +15,7 @@ try to change jdk version in setting and project structure.
 
 ## Run
 `mvn spring-boot:run`
-
+`localhost:8888/demo/index.html`
 ## RestApi
 1. index
 ```
