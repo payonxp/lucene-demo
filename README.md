@@ -17,4 +17,20 @@ try to change jdk version in setting and project structure.
 `mvn spring-boot:run`
 
 ## RestApi
-* We provide a sample html
+1. index
+```
+url: /index
+method: POST
+content-type: JSON
+body: { path: string }
+return: { result: [string] }
+```
+
+2. query
+```
+url: /query
+method: POST
+content-type: JSON
+body: { keyword: string }
+return: { result: [string] }
+```
