@@ -12,7 +12,7 @@ public class DemoController {
     @RequestMapping(value = "/")
     @ResponseBody
     public String hello() {
-        return new JSONObject(new RestResult(RetCode.SUCCESS.code, null)).toString();
+        return "index.html";
     }
 
 
