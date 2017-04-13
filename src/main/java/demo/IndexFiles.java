@@ -28,7 +28,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import demoAnalyzer.DemoAnalyzer;
 import org.apache.lucene.analysis.Analyzer;
@@ -53,9 +55,15 @@ import org.apache.lucene.store.FSDirectory;
 class IndexFiles {
 
     private IndexFiles() {}
-
+    private static Integer added = 0;
+    private static Integer updated = 0;
     /** Index all text files under a directory. */
-    static void indexFiles(String[] args) {
+    static List indexFiles(String[] args) {
+        added = 0;
+        updated = 0;
+
+        List<String> results = new ArrayList<>();
+
         String usage = "java org.apache.lucene.demo.IndexFiles"
                 + " [-index INDEX_PATH] [-docs DOCS_PATH] [-update]\n\n"
                 + "This indexes the documents in DOCS_PATH, creating a Lucene index"
@@ -76,19 +84,19 @@ class IndexFiles {
         }
 
         if (docsPath == null) {
-            System.err.println("Usage: " + usage);
-            System.exit(1);
+            results.add("Usage: " + usage);
+            return results;
         }
 
         final Path docDir = Paths.get(docsPath);
         if (!Files.isReadable(docDir)) {
-            System.out.println("Document directory '" +docDir.toAbsolutePath()+ "' does not exist or is not readable, please check the path");
-            System.exit(1);
+            results.add("Document directory '" +docDir.toAbsolutePath()+ "' does not exist or is not readable, please check the path");
+            return results;
         }
 
         Date start = new Date();
         try {
-            System.out.println("Indexing to directory '" + indexPath + "'...");
+            results.add("Indexing to directory '" + indexPath + "'...");
 
             Directory dir = FSDirectory.open(Paths.get(indexPath));
             // change standard analyzer to custom one
@@ -126,12 +134,15 @@ class IndexFiles {
             writer.close();
 
             Date end = new Date();
-            System.out.println(end.getTime() - start.getTime() + " total milliseconds");
+            results.add(end.getTime() - start.getTime() + " total milliseconds");
+            results.add(added + " docs have been added.");
+            results.add(updated + " docs have been updated.");
 
         } catch (IOException e) {
-            System.out.println(" caught a " + e.getClass() +
+            results.add(" caught a " + e.getClass() +
                     "\n with message: " + e.getMessage());
         }
+        return results;
     }
 
     /**
@@ -197,13 +208,15 @@ class IndexFiles {
 
             if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
                 // New index, so we just add the document (no old document can be there):
-                System.out.println("adding " + file);
+                // results.add("adding " + file);
+                added++;
                 writer.addDocument(doc);
             } else {
                 // Existing index (an old copy of this document may have been indexed) so
                 // we use updateDocument instead to replace the old one matching the exact
                 // path, if present:
-                System.out.println("updating " + file);
+                // results.add("updating " + file);
+                updated++;
                 writer.updateDocument(new Term("path", file.toString()), doc);
             }
         }
