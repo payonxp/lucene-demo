@@ -16,7 +16,7 @@ $("#suoyin").click(function(){
     };
     $.ajax({
         type: "POST",
-        url: '/demo/index',
+        url: '/demo/lucene/index',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -41,14 +41,14 @@ $("#chaxun").click(function(){
         keyword:$("#chaxuntext").val()
     };
     $.ajax({
-        type: "POST",
-        url: '/demo/query',
+        type: "GET",
+        url: '/demo/lucene/query',
         headers: {
         	'Content-Type': 'application/json'
 		},
         dataType: 'json',
         async: false,
-        data: JSON.stringify(data),
+        data: data,
         success: function (data) {
 			console.log(data);
 			for (var str in data.results) {

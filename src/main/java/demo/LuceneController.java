@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class DemoController {
+@RequestMapping(value = "/lucene")
+public class LuceneController {
 
     @RequestMapping(value = "/index", method = RequestMethod.POST)
     @ResponseBody
@@ -20,11 +21,9 @@ public class DemoController {
         return new JSONObject(new RestResult(RetCode.SUCCESS.code, list)).toString();
     }
 
-    @RequestMapping(value = "/query", method = RequestMethod.POST)
+    @RequestMapping(value = "/query", method = RequestMethod.GET)
     @ResponseBody
-    public String query(@RequestBody String req) throws Exception {
-        JSONObject json = new JSONObject(req);
-        String keyword = json.getString("keyword");
+    public String query(@RequestParam String keyword) throws Exception {
 
         List list = Demo.search(keyword);
         return new JSONObject(new RestResult(RetCode.SUCCESS.code, list)).toString();
